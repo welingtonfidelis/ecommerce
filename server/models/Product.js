@@ -2,9 +2,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
-class User extends Model { }
+class Product extends Model { }
 
-User.init({
+Product.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -14,23 +14,13 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
+    description: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-            isEmail: true
-        }
     },
-    password: {
-        type: DataTypes.STRING,
+    value: {
+        type: DataTypes.NUMBER,
         allowNull: false
-    },
-    role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            isIn: [['admin', 'user']]
-        }
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -40,8 +30,8 @@ User.init({
     },
 }, {
     sequelize,
-    modelName: 'users',
+    modelName: 'products',
     timestamps: true,
 });
 
-module.exports = User;
+module.exports = Product;

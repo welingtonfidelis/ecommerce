@@ -1,0 +1,29 @@
+### Create a new product
+POST http://localhost:3001/products
+content-type: application/json
+
+{
+  "name": "test1",
+  "description": "product test1",
+  "value": 2.50
+}
+
+### List all products
+GET http://localhost:3001/products
+
+### Show product by id
+GET http://localhost:3001/products/1
+
+
+### Update product
+PUT http://localhost:3001/products/1
+content-type: application/json
+
+{
+  "name": "test1.1",
+  "description": "product test1",
+  "value": 2.51
+}
+
+### Delete product by id
+DELETE  http://localhost:3001/products/1
