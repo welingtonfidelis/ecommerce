@@ -1,0 +1,29 @@
+### Create a new user
+POST http://localhost:3001/users
+content-type: application/json
+
+{
+  "name": "test1",
+  "email": "test1@test.com",
+  "password": "1234",
+  "role": "admin"
+}
+
+### List all users
+GET http://localhost:3001/users
+
+### Show user by id
+GET http://localhost:3001/users/1
+
+### Update user
+PUT http://localhost:3001/users/1
+content-type: application/json
+
+{
+  "name": "test1.1",
+  "email": "test1@test.com",
+  "role": "admin"
+}
+
+### Delete user by id
+DELETE  http://localhost:3001/users/1
