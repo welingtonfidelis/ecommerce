@@ -2,24 +2,21 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
-class Product extends Model { }
+class Order extends Model { }
 
-Product.init({
+Order.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    description: {
-        type: DataTypes.STRING,
+    user_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
-    value: {
-        type: DataTypes.NUMBER,
+    approved: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
         allowNull: false
     },
     created_at: {
@@ -30,10 +27,11 @@ Product.init({
     },
 }, {
     sequelize,
-    modelName: 'products',
+    modelName: 'orders',
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at'
 });
 
-module.exports = Product;
+
+module.exports = Order;

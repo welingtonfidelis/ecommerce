@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const userController = require('../controllers/userController');
 const productController = require('../controllers/productController');
+const orderController = require('../controllers/orderController');
 
 const router = Router();
 
@@ -18,5 +19,12 @@ router.get('/products/:id', productController.show);
 router.post('/products', productController.create);
 router.put('/products/:id', productController.update);
 router.delete('/products/:id', productController.delete);
+
+// PRODUCTS
+router.get('/orders', orderController.list);
+router.get('/orders/:id', orderController.show);
+router.post('/orders', orderController.create);
+router.patch('/orders/status/:id', orderController.updateStatus);
+router.delete('/orders/:id', orderController.delete);
 
 module.exports = router;

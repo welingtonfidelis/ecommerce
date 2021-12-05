@@ -32,16 +32,18 @@ User.init({
             isIn: [['admin', 'user']]
         }
     },
-    createdAt: {
+    created_at: {
         type: DataTypes.DATE,
     },
-    updatedAt: {
+    updated_at: {
         type: DataTypes.DATE,
     },
 }, {
     sequelize,
     modelName: 'users',
     timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at'
 });
 
 module.exports = User;
