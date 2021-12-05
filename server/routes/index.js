@@ -23,6 +23,7 @@ router.delete('/products/:id', productController.delete);
 // PRODUCTS
 router.get('/orders', orderController.list);
 router.get('/orders/:id', orderController.show);
+router.get('/orders/users/:id', orderController.listByUserId);
 router.post('/orders', orderController.create);
 router.patch('/orders/status/:id', orderController.updateStatus);
 router.delete('/orders/:id', orderController.delete);

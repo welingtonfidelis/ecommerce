@@ -6,21 +6,68 @@ const User = require("../models/User");
 const productController = {
   async list(req, res) {
     try {
-      const orders = await Order.findAll({ attributes: ['id', 'approved', 'user_id', 'created_at'] });
+      const { status } = req.query;
+      const where = {};
 
-      const orderWithRelationship = []
+      if (status) {
+        where.approved = status === 'true'
+      }
+
+      const orders = await Order.findAll({
+        where,
+        attributes: ['id', 'approved', 'user_id', 'created_at']
+      });
+
+      const ordersWithRelationship = []
+      for (const order of orders) {
+        const user = await User.findByPk(order.user_id, { attributes: ['id', 'name', 'email'] });
+        const orderProducts = await OrderProduct.findAll({ where: { order_id: order.id } });
+        const orderProductId = orderProducts.map(item => item.id);
+        const products = await Product.findAll({
+          where: { id: orderProductId },
+          attributes: ['id', 'name', 'value']
+        });
+
+        ordersWithRelationship.push({
+          order, user, products
+        });
+      }
+
+      res.send(ordersWithRelationship);
+
+    } catch (error) {
+      res.status(error.status || 500).send(error.message || 'Internal Server Error');
+    }
+  },
+
+  async listByUserId(req, res) {
+    try {
+      const { id } = req.params;
+      const { status } = req.query;
+      const where = { user_id: id };
+
+      if (status) {
+        where.approved = status === 'true'
+      }
+
+      const orders = await Order.findAll({
+        where,
+        attributes: ['id', 'approved', 'user_id', 'created_at']
+      });
+
+      const ordersWithRelationship = []
       for (const order of orders) {
         const user = await User.findByPk(order.user_id, { attributes: ['id', 'name', 'email'] });
         const orderProducts = await OrderProduct.findAll({ where: { order_id: order.id } });
         const orderProductId = orderProducts.map(item => item.id);
         const products = await Product.findAll({ where: { id: orderProductId }, attributes: ['id', 'name', 'value'] });
 
-        orderWithRelationship.push({
+        ordersWithRelationship.push({
           order, user, products
         });
       }
 
-      res.send(orderWithRelationship);
+      res.send(ordersWithRelationship);
 
     } catch (error) {
       res.status(error.status || 500).send(error.message || 'Internal Server Error');

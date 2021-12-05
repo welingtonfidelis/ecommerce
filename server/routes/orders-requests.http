@@ -8,7 +8,10 @@ content-type: application/json
 }
 
 ### List all orders
-GET http://localhost:3001/orders
+GET http://localhost:3001/orders?status=false
+
+### List all orders by user id
+GET http://localhost:3001/orders/users/1?status=false
 
 ### Show order by id
 GET http://localhost:3001/orders/1
