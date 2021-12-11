@@ -4,7 +4,10 @@ content-type: application/json
 
 {
   "user_id": 1,
-  "products": [1,2]
+  "products": [
+    {"id": 1, "quantity": 2 },
+    {"id": 2, "quantity": 2 }
+  ]
 }
 
 ### List all orders

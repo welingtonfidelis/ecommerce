@@ -13,6 +13,10 @@ OrderProduct.init({
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
 }, {
     sequelize,
     modelName: 'order-products',

@@ -22,10 +22,19 @@ const productController = {
       for (const order of orders) {
         const user = await User.findByPk(order.user_id, { attributes: ['id', 'name', 'email'] });
         const orderProducts = await OrderProduct.findAll({ where: { order_id: order.id } });
-        const orderProductId = orderProducts.map(item => item.id);
-        const products = await Product.findAll({
+        const orderProductId = orderProducts.map(item => item.product_id);
+        const productsWithoutQuantity = await Product.findAll({
           where: { id: orderProductId },
-          attributes: ['id', 'name', 'value']
+          attributes: ['id', 'name', 'value', 'image']
+        });
+        const products = productsWithoutQuantity.map((item, index) => {
+          return {
+            id: item.id,
+            name: item.name,
+            value: item.value,
+            quantity: orderProducts[index].quantity,
+            image: item.image
+          };
         });
 
         ordersWithRelationship.push({
@@ -59,8 +68,20 @@ const productController = {
       for (const order of orders) {
         const user = await User.findByPk(order.user_id, { attributes: ['id', 'name', 'email'] });
         const orderProducts = await OrderProduct.findAll({ where: { order_id: order.id } });
-        const orderProductId = orderProducts.map(item => item.id);
-        const products = await Product.findAll({ where: { id: orderProductId }, attributes: ['id', 'name', 'value'] });
+        const orderProductId = orderProducts.map(item => item.product_id);
+        const productsWithoutQuantity = await Product.findAll({ 
+          where: { id: orderProductId }, 
+          attributes: ['id', 'name', 'value', 'image'] 
+        });
+        const products = productsWithoutQuantity.map((item, index) => {
+          return {
+            id: item.id,
+            name: item.name,
+            value: item.value,
+            quantity: orderProducts[index].quantity,
+            image: item.image
+          };
+        });
 
         ordersWithRelationship.push({
           order, user, products
@@ -83,8 +104,20 @@ const productController = {
       if (order) {
         const user = await User.findByPk(order.user_id, { attributes: ['id', 'name', 'email'] });
         const orderProducts = await OrderProduct.findAll({ where: { order_id: order.id } });
-        const orderProductId = orderProducts.map(item => item.id);
-        const products = await Product.findAll({ where: { id: orderProductId }, attributes: ['id', 'name', 'value'] });
+        const orderProductId = orderProducts.map(item => item.product_id);
+        const productsWithoutQuantity = await Product.findAll({ 
+          where: { id: orderProductId }, 
+          attributes: ['id', 'name', 'value', 'image'] 
+        });
+        const products = productsWithoutQuantity.map((item, index) => {
+          return {
+            id: item.id,
+            name: item.name,
+            value: item.value,
+            quantity: orderProducts[index].quantity,
+            image: item.image
+          };
+        });
 
         orderWithRelationship = {
           order, user, products
@@ -106,10 +139,11 @@ const productController = {
       const order = await Order.create({ user_id });
 
       const orderProduct = []
-      for (const id of products) {
+      for (const product of products) {
         orderProduct.push({
           order_id: order.id,
-          product_id: id
+          product_id: product.id,
+          quantity: product.quantity
         });
       }
 

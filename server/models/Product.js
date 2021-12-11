@@ -22,6 +22,10 @@ Product.init({
         type: DataTypes.NUMBER,
         allowNull: false
     },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     created_at: {
         type: DataTypes.DATE,
     },
