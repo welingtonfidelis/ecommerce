@@ -18,7 +18,10 @@ const Cart = () => {
     try {
       const { data } = await api.post("/orders", {
         user_id: 1,
-        products: productsInCart.map((item) => item.id),
+        products: productsInCart.map((item) => ({
+          id: item.id,
+          quantity: item.quantity,
+        })),
       });
 
       if (data && data.id) {
