@@ -9,7 +9,7 @@ const router = Router();
 router.get('/users', userController.list);
 router.get('/users/:id', userController.show);
 router.post('/users', userController.create);
-router.post('/users/sigin', userController.sigin);
+router.post('/users/signin', userController.signin);
 router.put('/users/:id', userController.update);
 router.delete('/users/:id', userController.delete);
 

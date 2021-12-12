@@ -25,10 +25,10 @@ const userController = {
     }
   },
 
-  async sigin(req, res) {
+  async signin(req, res) {
     try {
       const { email: _email, password } = req.body;
-      const user = await User.findOne({ email: _email });
+      const user = await User.findOne({ raw:true, where: { email: _email }});
 
       if (!user) return res.status(401).send("User not found");
 
@@ -36,9 +36,9 @@ const userController = {
 
       if (!isValidPassword) return res.status(401).send("Invalid password or email");
 
-      const { id, name, email, role } = user;
+      const { id, name, email, isAdmin } = user;
 
-      res.json({ id, name, email, role });
+      res.json({ id, name, email, isAdmin });
 
     } catch (error) {
       res.status(error.status || 500).send(error.message || 'Internal Server Error');
@@ -65,7 +65,7 @@ const userController = {
 
       user.name = req.body.name;
       user.email = req.body.email;
-      user.role = req.body.role;
+      user.isAdmin = req.body.isAdmin;
 
       const data = await user.save();
 

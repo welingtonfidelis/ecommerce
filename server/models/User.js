@@ -25,12 +25,9 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    role: {
-        type: DataTypes.STRING,
+    isAdmin: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
-        validate: {
-            isIn: [['admin', 'user']]
-        }
     },
     created_at: {
         type: DataTypes.DATE,
