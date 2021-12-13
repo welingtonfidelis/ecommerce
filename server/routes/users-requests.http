@@ -4,9 +4,9 @@ content-type: application/json
 
 {
   "name": "test1",
-  "email": "test1@test.com",
+  "email": "test1@email.com",
   "password": "1234",
-  "role": "admin"
+  "is_admin": true
 }
 
 ### List all users

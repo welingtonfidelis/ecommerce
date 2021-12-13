@@ -36,9 +36,9 @@ const userController = {
 
       if (!isValidPassword) return res.status(401).send("Invalid password or email");
 
-      const { id, name, email, isAdmin } = user;
+      const { id, name, email, is_admin } = user;
 
-      res.json({ id, name, email, isAdmin });
+      res.json({ id, name, email, is_admin });
 
     } catch (error) {
       res.status(error.status || 500).send(error.message || 'Internal Server Error');
@@ -65,7 +65,7 @@ const userController = {
 
       user.name = req.body.name;
       user.email = req.body.email;
-      user.isAdmin = req.body.isAdmin;
+      user.is_admin = req.body.is_admin;
 
       const data = await user.save();
 

@@ -26,7 +26,7 @@ const Register = () => {
           name: name,
           email: email,
           password: password,
-          isAdmin: false
+          is_admin: false
       });
 
       if (data && data.id) {
