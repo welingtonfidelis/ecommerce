@@ -5,10 +5,10 @@ const Button = (props) => {
   const { children } = props;
   
   function renderButton() {
-    return <Styled.Button {...props}>{props.children}</Styled.Button>
+    return <Styled.Button {...props}>{children}</Styled.Button>
   }
 
-  if(children.length > 1) {
+  if(Array.isArray(children)) {
     return (
       <Styled.Container>
         {renderButton()}

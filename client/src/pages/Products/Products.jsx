@@ -2,6 +2,7 @@ import { useState } from "react"
 import Button from "../../components/Atoms/Button/Button"
 import Form from "../../components/Atoms/Form/Form"
 import TextInput from "../../components/Atoms/TextInput/TextInput"
+import Grid from "../../components/Molecules/Grid/Grid"
 import * as Styled from "./Products.styled"
 
 const Products = () => {
@@ -15,27 +16,34 @@ const Products = () => {
   }
 
   return (
-    <Styled.Container>
+    <Styled.Main>
       <h1>Cadastro de Produtos</h1>
-      <Form onSubmit={onSubmit} direction="column">
-        <TextInput 
-          label="Nome do produto" 
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <TextInput 
-          label="Preço" 
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <TextInput 
-          label="Descrição" 
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <Button type="submit">Cadastrar</Button>
-      </Form>
-    </Styled.Container>
+      <Styled.Container>
+        <Styled.FormContainer>
+          <Form onSubmit={onSubmit} direction="column">
+            <TextInput 
+              label="Nome do produto" 
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <TextInput 
+              label="Preço" 
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+            <TextInput 
+              as="textarea"
+              rows={4}
+              label="Descrição" 
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <Button variant="contained" type="submit">Cadastrar</Button>
+          </Form>
+        </Styled.FormContainer>
+        <Grid />
+      </Styled.Container>
+    </Styled.Main>
   )
 }
 

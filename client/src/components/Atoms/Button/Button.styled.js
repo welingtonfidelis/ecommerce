@@ -13,9 +13,10 @@ export const Button = styled.button`
   width: ${(props) => props.variant === "contained" && "120px"};
   height: 40px;
   background: ${(props) => props.variant !== "contained" && "none"};
+  font-size: 1rem;
+  text-align: center;
   border: ${(props) => props.variant !== "contained" && "none"};
   border-radius: 4px;
-  font-size: 1rem;
 
   transition: 0.3s;
   background-color: transparent;

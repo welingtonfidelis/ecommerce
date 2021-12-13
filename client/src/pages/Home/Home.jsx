@@ -1,6 +1,12 @@
+import Grid from "../../components/Molecules/Grid/Grid"
+
+import * as Styled from "./Home.styled"
+
 const Home = () => {
   return (
-    <div style={{height: "200px", background: "red"}} />
+    <Styled.Main>
+      <Grid />
+    </Styled.Main>
   )
 }
 

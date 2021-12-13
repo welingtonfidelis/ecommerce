@@ -14,7 +14,7 @@ const Navbar = () => {
 
   function renderButtonByRole() {
     if(user?.is_admin) {
-      return <Button variant="text" onClick={() => navigate('/cart')}><FaBook /> Register Products</Button>
+      return <Button variant="text" onClick={() => navigate('/products')}><FaBook /> Register Products</Button>
     }
     return <Button variant="text" onClick={() => navigate('/cart')}><FaShoppingCart /> View Cart</Button>
   }
