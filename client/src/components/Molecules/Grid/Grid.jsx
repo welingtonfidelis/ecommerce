@@ -32,7 +32,7 @@ const Grid = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       <Styled.Grid>
-        {list.map(item => <Product key={item.id} id={item.id} name={item.name} price={item.value} image={item.image} />)}
+        {list.map(item => <Product key={item.id} id={item.id} name={item.name} value={item.value} image={item.image} />)}
       </Styled.Grid>
     </Styled.Container>
   )

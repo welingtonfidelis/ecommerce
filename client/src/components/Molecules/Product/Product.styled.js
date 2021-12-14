@@ -15,12 +15,17 @@ export const Image = styled.img`
   width: auto;
 `;
 
-export const Name = styled.p`
+export const Text = styled.p`
   margin: 0;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  margin-top: auto;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const Actions = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-top: auto;
 `;

@@ -8,11 +8,14 @@ const Product = ({id, name, value, image}) => {
   return (
     <Styled.Container>
       <Styled.Image src={image}></Styled.Image>
-      <Styled.Name>{name}</Styled.Name>
-      <Styled.Actions>
-        <Button variant="icon"><RiDeleteBin7Fill /></Button>
-        <Button variant="icon"><FaInfoCircle /></Button>
-      </Styled.Actions>
+      <Styled.Text>{name}</Styled.Text>
+      <Styled.Footer>
+        <Styled.Text>$ {value.toFixed(2)}</Styled.Text>
+        <Styled.Actions>
+          <Button variant="icon"><RiDeleteBin7Fill /></Button>
+          <Button variant="icon"><FaInfoCircle /></Button>
+        </Styled.Actions>
+      </Styled.Footer>
     </Styled.Container>
   )
 }
