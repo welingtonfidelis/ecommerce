@@ -21,7 +21,6 @@ export const AuthContextProvider = (props) => {
     }
 
     const loginHandler = async (userData) => {
-        console.log(userData)
         const { data } = await api.post("/users/signin", userData);
 
         setUser(data);
