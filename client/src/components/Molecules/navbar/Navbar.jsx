@@ -6,18 +6,20 @@ import Badge from "../../Atoms/Badge/Badge";
 import Button from "../../Atoms/Button/Button"
 import Logo from "../../Atoms/Logo/Logo"
 import { useAuth } from '../../../store/auth-context';
+import { useCart } from "../../../store/cart-context";
 
 import * as Styled from "./Navbar.styled"
 
 const Navbar = () => {
   const { signed, user, onLogout } = useAuth();
+  const { cart } = useCart();
   const navigate = useNavigate();
 
   function renderButtonByRole() {
     if(user?.is_admin) {
       return <Button variant="text" onClick={() => navigate('/products')}><FaBook /> Register Products</Button>
     }
-    return <Button variant="text" onClick={() => navigate('/cart')}><Badge value={3}><FaShoppingCart /></Badge> View Cart</Button>
+    return <Button variant="text" onClick={() => navigate('/cart')}><Badge value={cart.length}><FaShoppingCart /></Badge> View Cart</Button>
   }
 
   function renderButtonsByLoggingStatus() {

@@ -1,10 +1,10 @@
 import * as Styled from "./Badge.styled.js"
 
-const Badge = (props) => {
+const Badge = ({ children, value }) => {
   return (
     <Styled.Container>
-      {props.children}
-      <Styled.Value>{props.value}</Styled.Value>
+      {children}
+      {value > 0 && <Styled.Value>{value}</Styled.Value>}
     </Styled.Container>
   )
 }
