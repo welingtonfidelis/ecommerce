@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { RiFileListFill, RiLogoutBoxFill, RiLoginBoxFill } from "react-icons/ri"
 import { FaBook, FaShoppingCart } from "react-icons/fa"
 
+import Badge from "../../Atoms/Badge/Badge";
 import Button from "../../Atoms/Button/Button"
 import Logo from "../../Atoms/Logo/Logo"
 import { useAuth } from '../../../store/auth-context';
@@ -16,7 +17,7 @@ const Navbar = () => {
     if(user?.is_admin) {
       return <Button variant="text" onClick={() => navigate('/products')}><FaBook /> Register Products</Button>
     }
-    return <Button variant="text" onClick={() => navigate('/cart')}><FaShoppingCart /> View Cart</Button>
+    return <Button variant="text" onClick={() => navigate('/cart')}><Badge value={3}><FaShoppingCart /></Badge> View Cart</Button>
   }
 
   function renderButtonsByLoggingStatus() {

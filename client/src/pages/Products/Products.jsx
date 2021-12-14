@@ -13,10 +13,42 @@ const Products = () => {
   const [image, setImage] = useState("")
   const [price, setPrice] = useState("")
   const [description, setDescription] = useState("")
+  const [error, setError] = useState({name: false, image: false, price: false, description: false})
   const [products, setProducts] = useState([])
+
+  const checkForErrors = () => {
+    let errorPayload = {};
+    Object.assign(errorPayload, error);
+
+    if(name.length === 0) {
+      errorPayload.name = true
+    }
+    if(price.length === 0) {
+      errorPayload.price = true
+    }
+    if(description.length === 0) {
+      errorPayload.description = true
+    }
+
+    setError(errorPayload)
+
+    if(Object.values(errorPayload).some(item => item)) {
+      return true
+    }
+
+    return false
+  }
+
+  const clearErrorField = (field) => {
+    setError(prevState => { return {...prevState, [field]: null}})
+  }
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    if(checkForErrors()) {
+      return
+    }
 
     try {
       const { data } = await api.post("/products", {
@@ -62,30 +94,33 @@ const Products = () => {
           <Form onSubmit={onSubmit} direction="column">
             <TextInput 
               label="Product's name" 
+              error={error.name}
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required
+              onFocus={() => clearErrorField("name")}
             />
             <TextInput 
               label="Image URL" 
+              error={error.image}
               value={image}
               onChange={(e) => setImage(e.target.value)}
-              required
             />
             <TextInput 
               label="Price"
+              error={error.price}
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              required
+              onFocus={() => clearErrorField("price")}
             />
             <TextInput 
               as="textarea"
               rows={4}
               label="Description" 
+              error={error.description}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              required
+              onFocus={() => clearErrorField("description")}
             />
             <Button variant="contained" type="submit">Register</Button>
           </Form>

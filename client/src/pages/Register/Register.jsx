@@ -13,10 +13,45 @@ const Register = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [passwordCheck, setPasswordCheck] = useState("")
+  const [error, setError] = useState({name: false, email: false, password: false, passwordCheck: false})
   const navigate = useNavigate();
+
+  const checkForErrors = () => {
+    let errorPayload = {};
+    Object.assign(errorPayload, error);
+
+    if(name.length === 0) {
+      errorPayload.name = true
+    }
+    if(email.length === 0) {
+      errorPayload.email = true
+    }
+    if(password.length === 0) {
+      errorPayload.password = true
+    }
+    if(passwordCheck.length === 0) {
+      errorPayload.passwordCheck = true
+    }
+
+    setError(errorPayload)
+
+    if(Object.values(errorPayload).some(item => item)) {
+      return true
+    }
+
+    return false
+  }
+
+  const clearErrorField = (field) => {
+    setError(prevState => { return {...prevState, [field]: null}})
+  }
 
   const onSubmit = async (event) => {
     event.preventDefault()
+
+    if(checkForErrors()) {
+      return
+    }
 
     if (password !== passwordCheck) {
       toast.error('Passwords must match.', {
@@ -52,30 +87,33 @@ const Register = () => {
       <Form onSubmit={onSubmit} direction="column">
         <TextInput 
           label="Your Name" 
+          error={error.name}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
+          onFocus={() => clearErrorField("name")}
         />
         <TextInput 
           label="E-mail" 
+          error={error.email}
           value={email}
-          type="email"
           onChange={(e) => setEmail(e.target.value)}
-          required
+          onFocus={() => clearErrorField("email")}
         />
         <TextInput 
           label="Password" 
+          error={error.password}
           value={password}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
-          required
+          onFocus={() => clearErrorField("password")}
         />
         <TextInput 
           label="Re-enter password" 
+          error={error.passwordCheck}
           value={passwordCheck}
           type="password"
           onChange={(e) => setPasswordCheck(e.target.value)}
-          required
+          onFocus={() => clearErrorField("passwordCheck")}
         />
         <Button type="submit">Register</Button>
       </Form>
