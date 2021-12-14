@@ -5,7 +5,7 @@ import { useCart } from "../../../store/cart-context"
 
 import * as Styled from "./Product.styled"
 
-const Product = ({id, name, value, image}) => {
+const Product = ({id, name, price, image}) => {
   const { onAddToCart } = useCart();
 
   return (
@@ -13,9 +13,9 @@ const Product = ({id, name, value, image}) => {
       <Styled.Image src={image}></Styled.Image>
       <Styled.Text>{name}</Styled.Text>
       <Styled.Footer>
-        <Styled.Text>$ {value.toFixed(2)}</Styled.Text>
+        <Styled.Text>$ {price.toFixed(2)}</Styled.Text>
         <Styled.Actions>
-          <Button variant="icon" onClick={() => onAddToCart({ id, name, value, image })}><RiDeleteBin7Fill /></Button>
+          <Button variant="icon" onClick={() => onAddToCart({ id, name, price, image })}><RiDeleteBin7Fill /></Button>
           <Button variant="icon"><FaInfoCircle /></Button>
         </Styled.Actions>
       </Styled.Footer>

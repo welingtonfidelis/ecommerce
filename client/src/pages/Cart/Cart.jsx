@@ -2,15 +2,17 @@ import { FaTrashAlt } from "react-icons/fa";
 import Button from "../../components/Atoms/Button/Button";
 import { maskValue } from "../../util";
 import { useCart } from "../../store/cart-context";
+import { useAuth } from "../../store/auth-context";
 
 import * as Styled from "./Cart.styled";
 
 const Cart = () => {
   const { cart, onRemoveFromCart, onSubmitCart } = useCart();
+  const { user } = useAuth();
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    onSubmitCart();
+    onSubmitCart(user?.id);
   };
 
   return (
@@ -34,7 +36,7 @@ const Cart = () => {
                   </Styled.TableTd>
                   <Styled.TableTd>{product.name}</Styled.TableTd>
                   <Styled.TableTd width={"15%"}>
-                    {maskValue(product.value)}
+                    {maskValue(product.price)}
                   </Styled.TableTd>
                   <Styled.TableTd width={"10%"}>
                     {product.quantity}

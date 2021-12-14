@@ -25,7 +25,7 @@ const Grid = () => {
             key={item.id}
             id={item.id}
             name={item.name}
-            value={item.value}
+            price={item.price}
             image={item.image}
           />
         ))}

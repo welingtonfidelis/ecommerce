@@ -3,9 +3,9 @@ import { api } from "../services/api";
 
 const CartContext = React.createContext({
     cart: [],
-    onAddToCart: () => { },
-    onRemoveFromCart: (id) => { },
-    onSubmitCart: () => { }
+    onAddToCart: () => {},
+    onRemoveFromCart: (id) => {},
+    onSubmitCart: (user_id) => {}
 });
 
 // Named export.
@@ -31,6 +31,7 @@ export const CartContextProvider = (props) => {
 
         if (!inCart) tempCart.push({ ...product, quantity: 1 });
 
+        setCart(tempCart);
         localStorage.setItem('@App:cart', JSON.stringify(tempCart));
     }
 
@@ -42,7 +43,11 @@ export const CartContextProvider = (props) => {
         localStorage.setItem('@App:cart', JSON.stringify(tempCart));
     }
 
-    const submitCart = async () => {
+    const submitCart = async (user_id) => {
+        if(!user_id) {
+            alert("Você precisa estar logado para enviar seu pedido.");
+            return;
+        }
         if (!cart.length) {
             alert("Seu carrinho está vazio.");
             return;
@@ -50,7 +55,7 @@ export const CartContextProvider = (props) => {
 
         try {
             const { data } = await api.post("/orders", {
-                user_id: 1,
+                user_id,
                 products: cart.map((item) => ({
                     id: item.id,
                     quantity: item.quantity,

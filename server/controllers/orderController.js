@@ -25,13 +25,13 @@ const productController = {
         const orderProductId = orderProducts.map(item => item.product_id);
         const productsWithoutQuantity = await Product.findAll({
           where: { id: orderProductId },
-          attributes: ['id', 'name', 'value', 'image']
+          attributes: ['id', 'name', 'price', 'image']
         });
         const products = productsWithoutQuantity.map((item, index) => {
           return {
             id: item.id,
             name: item.name,
-            value: item.value,
+            price: item.price,
             quantity: orderProducts[index].quantity,
             image: item.image
           };
@@ -71,13 +71,13 @@ const productController = {
         const orderProductId = orderProducts.map(item => item.product_id);
         const productsWithoutQuantity = await Product.findAll({ 
           where: { id: orderProductId }, 
-          attributes: ['id', 'name', 'value', 'image'] 
+          attributes: ['id', 'name', 'price', 'image'] 
         });
         const products = productsWithoutQuantity.map((item, index) => {
           return {
             id: item.id,
             name: item.name,
-            value: item.value,
+            price: item.price,
             quantity: orderProducts[index].quantity,
             image: item.image
           };
@@ -107,13 +107,13 @@ const productController = {
         const orderProductId = orderProducts.map(item => item.product_id);
         const productsWithoutQuantity = await Product.findAll({ 
           where: { id: orderProductId }, 
-          attributes: ['id', 'name', 'value', 'image'] 
+          attributes: ['id', 'name', 'price', 'image'] 
         });
         const products = productsWithoutQuantity.map((item, index) => {
           return {
             id: item.id,
             name: item.name,
-            value: item.value,
+            price: item.price,
             quantity: orderProducts[index].quantity,
             image: item.image
           };

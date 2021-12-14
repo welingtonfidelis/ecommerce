@@ -7,8 +7,10 @@ import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
+import { toast } from 'react-toastify';
 
 function App() {
+  toast.configure();
   return (
     <>
       <Navbar />
