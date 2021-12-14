@@ -5,6 +5,8 @@ import TextInput from "../../components/Atoms/TextInput/TextInput"
 import * as Styled from "./Register.styled"
 import { api } from "../../services/api";
 import { useNavigate } from "react-router";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Register = () => {
   const [name, setName] = useState("")
@@ -17,7 +19,9 @@ const Register = () => {
     event.preventDefault()
 
     if (password !== passwordCheck) {
-      alert("As senhas não coincidem.");
+      toast.error('Passwords must match.', {
+        position: "top-right",
+      });
       return;
     }
 
@@ -30,20 +34,24 @@ const Register = () => {
       });
 
       if (data && data.id) {
-        alert("Conta criada com sucesso");
+        toast.success('Successfully registered user account', {
+          position: "top-right",
+        });
         navigate("/signin");
       }
     } catch (error) {
-      console.log(error);
+      toast.error('An error occurred', {
+        position: "top-right",
+      });
     }
   }
 
   return (
     <Styled.Container>
-      <h1>Criar Conta</h1>
+      <h1>Create Account</h1>
       <Form onSubmit={onSubmit} direction="column">
         <TextInput 
-          label="Seu Nome" 
+          label="Your Name" 
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -56,20 +64,20 @@ const Register = () => {
           required
         />
         <TextInput 
-          label="Senha" 
+          label="Password" 
           value={password}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
         <TextInput 
-          label="Insira a senha nova mais uma vez" 
+          label="Re-enter password" 
           value={passwordCheck}
           type="password"
           onChange={(e) => setPasswordCheck(e.target.value)}
           required
         />
-        <Button type="submit">Cadastrar</Button>
+        <Button type="submit">Register</Button>
       </Form>
     </Styled.Container>
   )

@@ -4,13 +4,13 @@ import Button from "../../Atoms/Button/Button";
 
 import * as Styled from "./Product.styled"
 
-const Product = ({id, name, value, image}) => {
+const Product = ({id, name, price, image}) => {
   return (
     <Styled.Container>
       <Styled.Image src={image}></Styled.Image>
       <Styled.Text>{name}</Styled.Text>
       <Styled.Footer>
-        <Styled.Text>$ {value.toFixed(2)}</Styled.Text>
+        <Styled.Text>$ {price.toFixed(2)}</Styled.Text>
         <Styled.Actions>
           <Button variant="icon"><RiDeleteBin7Fill /></Button>
           <Button variant="icon"><FaInfoCircle /></Button>
