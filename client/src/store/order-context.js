@@ -19,12 +19,11 @@ export const OrderContextProvider = (props) => {
                 data = response.data;
             }
             else {
-                const response = await api.get(`/orders/users/${userId}?status=false`);
+                const response = await api.get(`/orders/users/${userId}`);
 
                 data = response.data;
             }
 
-            console.log('!', isAdmin, userId, data);
             if (data) {
                 setList(data);
             }

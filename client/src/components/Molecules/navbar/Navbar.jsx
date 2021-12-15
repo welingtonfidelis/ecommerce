@@ -27,10 +27,6 @@ const Navbar = () => {
           <Button variant="text" onClick={() => navigate("/products")}>
             <FaBook /> Criar Produto
           </Button>
-
-          {/* <Button variant="text" onClick={() => navigate("/orders")}>
-            <RiFileListFill /> Pedidos outros
-          </Button> */}
         </>
       );
     }
