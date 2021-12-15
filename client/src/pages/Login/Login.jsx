@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <Styled.Container>
-      <h1>Fazer Login</h1>
+      <h1>Signin</h1>
       <Form onSubmit={onSubmit} direction="column">
         <TextInput 
           label="E-mail" 
@@ -75,7 +75,8 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           onFocus={() => clearErrorField("password")}
         />
-        <Button type="submit">Acessar</Button>
+        <Button type="submit">Entrar</Button>
+        <p>Ainda não tem uma conta? <a href="/register">Registre-se aqui</a></p>
       </Form>
     </Styled.Container>
   )

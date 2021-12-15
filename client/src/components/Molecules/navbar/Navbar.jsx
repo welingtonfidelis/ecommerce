@@ -23,61 +23,55 @@ const Navbar = () => {
   function renderButtonByRole() {
     if (user?.is_admin) {
       return (
-        <>
-          <Button variant="text" onClick={() => navigate("/products")}>
-            <FaBook /> Criar Produto
-          </Button>
-        </>
-      );
+        <Button variant="text" onClick={() => navigate("/products")}>
+          <FaBook /> Registrar Produto
+        </Button>
+      )
     }
-  }
-
-  function renderButtonsByLoggingStatus() {
-    const buttonGroup = [
-      <Button variant="text" onClick={() => navigate("/")}>
-        <RiStore3Fill /> Loja
-      </Button>,
-      <Button variant="text" onClick={() => navigate("/orders")}>
-        <RiFileListFill /> Pedidos
-      </Button>,
+    else {
+      return (
       <Button variant="text" onClick={() => navigate("/cart")}>
         <Badge value={cart.length}>
           <FaShoppingCart />
         </Badge>
         Carrinho
-      </Button>,
-    ];
+      </Button>
+      )
+    }
+  }
 
+  function renderButtonsByLoggingStatus() {
     if (signed) {
-      if (user?.is_admin) {
-        delete buttonGroup[2];
-      }
-      buttonGroup.push(
-        <Button variant="text" onClick={() => onLogout()}>
-          <RiLogoutBoxFill /> Sair
-        </Button>
-      );
-    } else {
-      delete buttonGroup[1];
-
-      buttonGroup.push(
-        <Button variant="text" onClick={() => navigate("/signin")}>
-          <RiLoginBoxFill /> Logar
-        </Button>
-      );
+      return (
+        <>
+          <Button variant="text" onClick={() => navigate("/orders")}>
+            <RiFileListFill /> Pedidos
+          </Button>
+          <Button variant="text" onClick={() => onLogout()}>
+            <RiLogoutBoxFill /> Sair
+          </Button>
+        </>
+      )
     }
 
-    return buttonGroup;
+    return (
+      <Button variant="text" onClick={() => navigate("/signin")}>
+        <RiLoginBoxFill /> Acessar
+      </Button>
+    )
   }
 
   return (
     <Styled.Header>
       <Styled.BorderedContainer>
-        <Button variant="text" onClick={() => navigate("/")}>
+        <Styled.NameContainer>
           <Logo />
-        </Button>
-        <Styled.ActionsContainer>
           {signed && <span>Olá {user.name}!</span>}
+        </Styled.NameContainer>
+        <Styled.ActionsContainer>
+          <Button variant="text" onClick={() => navigate("/")}>
+            <RiStore3Fill /> Loja
+          </Button>
           {renderButtonByRole()}
           {renderButtonsByLoggingStatus()}
         </Styled.ActionsContainer>

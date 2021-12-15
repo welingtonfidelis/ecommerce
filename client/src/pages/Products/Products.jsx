@@ -88,25 +88,25 @@ const Products = () => {
 
   return (
     <Styled.Main>
-      <h1>Product Registration</h1>
+      <h1>Registro de Produto</h1>
       <Styled.Container>
         <Styled.FormContainer>
           <Form onSubmit={onSubmit} direction="column">
             <TextInput 
-              label="Product's name" 
+              label="Nome do produto" 
               error={error.name}
               value={name}
               onChange={(e) => setName(e.target.value)}
               onFocus={() => clearErrorField("name")}
             />
             <TextInput 
-              label="Image URL" 
+              label="URL da imagem" 
               error={error.image}
               value={image}
               onChange={(e) => setImage(e.target.value)}
             />
             <TextInput 
-              label="Price"
+              label="Preço"
               error={error.price}
               type="number"
               value={price}
@@ -116,13 +116,13 @@ const Products = () => {
             <TextInput 
               as="textarea"
               rows={4}
-              label="Description" 
+              label="Descrição" 
               error={error.description}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               onFocus={() => clearErrorField("description")}
             />
-            <Button variant="contained" type="submit">Register</Button>
+            <Button variant="contained" type="submit">Registrar</Button>
           </Form>
         </Styled.FormContainer>
         <Grid products={products}/>

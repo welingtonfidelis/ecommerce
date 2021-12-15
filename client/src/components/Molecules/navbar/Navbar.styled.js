@@ -14,6 +14,13 @@ export const BorderedContainer = styled.div`
   border: 2px solid;
 `;
 
+export const NameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 0.5rem;
+`;
+
 export const ActionsContainer = styled.div`
   display: flex;
   /* width: 140px; */

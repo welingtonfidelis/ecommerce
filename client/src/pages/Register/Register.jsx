@@ -83,10 +83,10 @@ const Register = () => {
 
   return (
     <Styled.Container>
-      <h1>Create Account</h1>
+      <h1>Criar Conta</h1>
       <Form onSubmit={onSubmit} direction="column">
         <TextInput 
-          label="Your Name" 
+          label="Nome" 
           error={error.name}
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -100,7 +100,7 @@ const Register = () => {
           onFocus={() => clearErrorField("email")}
         />
         <TextInput 
-          label="Password" 
+          label="Senha" 
           error={error.password}
           value={password}
           type="password"
@@ -108,14 +108,14 @@ const Register = () => {
           onFocus={() => clearErrorField("password")}
         />
         <TextInput 
-          label="Re-enter password" 
+          label="Confirme a senha" 
           error={error.passwordCheck}
           value={passwordCheck}
           type="password"
           onChange={(e) => setPasswordCheck(e.target.value)}
           onFocus={() => clearErrorField("passwordCheck")}
         />
-        <Button type="submit">Register</Button>
+        <Button type="submit">Registrar</Button>
       </Form>
     </Styled.Container>
   )

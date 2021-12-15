@@ -10,7 +10,7 @@ const TextInput = (props) => {
       </Styled.Label>
       <Styled.Input {...props} />
       <Styled.ErrorContainer>
-        {error && <Styled.Red>Campo obrigatório</Styled.Red>}
+        {error && <Styled.Red>Mandatory Field</Styled.Red>}
       </Styled.ErrorContainer>
     </Styled.Container>
   )
