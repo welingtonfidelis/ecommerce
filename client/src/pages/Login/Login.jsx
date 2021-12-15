@@ -3,6 +3,8 @@ import Button from "../../components/Atoms/Button/Button"
 import Form from "../../components/Atoms/Form/Form"
 import TextInput from "../../components/Atoms/TextInput/TextInput"
 import { useAuth } from '../../store/auth-context';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import * as Styled from "./Login.styled"
 
@@ -50,7 +52,9 @@ const Login = () => {
       });
 
     } catch (error) {
-      console.log(error);
+      toast.error('Invalid e-mail or password', {
+        position: "top-right",
+      });
     }
   }
 
