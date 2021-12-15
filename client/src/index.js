@@ -6,13 +6,16 @@ import App from './App';
 import { AuthContextProvider } from './store/auth-context';
 import { ProductContextProvider } from './store/product-context';
 import { CartContextProvider } from './store/cart-context';
+import { OrderContextProvider } from './store/order-context';
 
 ReactDOM.render(
   <BrowserRouter>
     <AuthContextProvider>
       <ProductContextProvider>
         <CartContextProvider>
-        <App />
+          <OrderContextProvider>
+            <App />
+          </OrderContextProvider>
         </CartContextProvider>
       </ProductContextProvider>
     </AuthContextProvider>

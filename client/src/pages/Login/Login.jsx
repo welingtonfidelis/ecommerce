@@ -2,8 +2,9 @@ import { useState } from "react"
 import Button from "../../components/Atoms/Button/Button"
 import Form from "../../components/Atoms/Form/Form"
 import TextInput from "../../components/Atoms/TextInput/TextInput"
-import * as Styled from "./Login.styled"
 import { useAuth } from '../../store/auth-context';
+
+import * as Styled from "./Login.styled"
 
 const Login = () => {
   const [email, setEmail] = useState("")

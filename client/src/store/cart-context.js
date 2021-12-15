@@ -43,8 +43,8 @@ export const CartContextProvider = (props) => {
         localStorage.setItem('@App:cart', JSON.stringify(tempCart));
     }
 
-    const submitCart = async (user_id) => {
-        if(!user_id) {
+    const submitCart = async (userId) => {
+        if(!userId) {
             alert("Você precisa estar logado para enviar seu pedido.");
             return;
         }
@@ -55,7 +55,7 @@ export const CartContextProvider = (props) => {
 
         try {
             const { data } = await api.post("/orders", {
-                user_id,
+                user_id: userId,
                 products: cart.map((item) => ({
                     id: item.id,
                     quantity: item.quantity,
@@ -69,6 +69,7 @@ export const CartContextProvider = (props) => {
             }
         } catch (error) {
             console.log(error);
+            alert("Houve um erro ao enviar seu pedido.");
         }
     }
 
