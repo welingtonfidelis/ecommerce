@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback  } from "react"
 import Button from "../../components/Atoms/Button/Button"
 import Form from "../../components/Atoms/Form/Form"
 import TextInput from "../../components/Atoms/TextInput/TextInput"
-import Grid from "../../components/Molecules/Grid/Grid"
+import Grid from "../../components/Molecules/ProductGrid/ProductGrid"
 import * as Styled from "./Products.styled"
 import { api } from "../../services/api";
 import { toast } from 'react-toastify';

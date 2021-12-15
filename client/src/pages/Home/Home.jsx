@@ -1,4 +1,4 @@
-import Grid from "../../components/Molecules/Grid/Grid"
+import Grid from "../../components/Molecules/ProductGrid/ProductGrid"
 
 import * as Styled from "./Home.styled"
 

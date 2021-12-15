@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import { api } from "../services/api";
 
 const ProductContext = React.createContext({
@@ -10,7 +10,7 @@ const ProductContext = React.createContext({
 export const ProductContextProvider = (props) => {
   const [list, setList] = useState([]);
 
-  const getList = async () => {
+  const getList = useCallback(async () => {
     try {
       const { data } = await api.get("/products");
 
@@ -21,7 +21,7 @@ export const ProductContextProvider = (props) => {
       console.log(error);
       alert("Houve um erro ao tentar trazer a lista de produtos.");
     }
-  };
+  }, []);
 
   return (
     <ProductContext.Provider value={{ list, onGetList: getList }}>

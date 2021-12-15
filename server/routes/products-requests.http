@@ -22,8 +22,9 @@ content-type: application/json
 
 {
   "name": "test1.1",
-  "description": "product test1",
-  "price": 2.51
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat repellat, incidunt vero natus voluptatem quos dolor tempora eius, earum voluptas non nihil saepe consectetur ea ipsum, obcaecati sequi pariatur! Maxime?",
+  "price": 2.51,
+  "image": "https://images.unsplash.com/photo-1593642634443-44adaa06623a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80"
 }
 
 ### Delete product by id

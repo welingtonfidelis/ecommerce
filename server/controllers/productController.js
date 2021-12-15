@@ -43,6 +43,7 @@ const productController = {
       product.name = req.body.name; 
       product.description = req.body.description; 
       product.price = req.body.price; 
+      product.image = req.body.image; 
 
       const data = await product.save();
 

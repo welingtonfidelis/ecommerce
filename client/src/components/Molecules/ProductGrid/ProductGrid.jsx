@@ -27,6 +27,7 @@ const Grid = () => {
             name={item.name}
             price={item.price}
             image={item.image}
+            description={item.description}
           />
         ))}
       </Styled.Grid>
