@@ -8,6 +8,7 @@ import * as Styled from "./OrderDetail.styled"
 
 const OrderDetail = ({isAdmin, detailedOrder, onClose}) => {
   const {user, products, order} = detailedOrder
+  console.log(' -> ', user);
   const { onApproveOrder } = useOrder()
 
   return (
