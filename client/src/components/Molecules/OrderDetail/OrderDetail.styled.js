@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
 export const Header = styled.div`
@@ -19,6 +18,7 @@ export const Header = styled.div`
 
 export const Client = styled.div`
   display: flex;
+  margin-bottom: 1rem;
 `;
 
 export const Text = styled.p`

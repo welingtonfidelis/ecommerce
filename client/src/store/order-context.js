@@ -19,7 +19,7 @@ export const OrderContextProvider = (props) => {
     try {
       let data = [];
       if (isAdmin) {
-        const response = await api.get("/orders?status=false");
+        const response = await api.get("/orders");
 
         data = response.data;
       } else {
@@ -40,8 +40,9 @@ export const OrderContextProvider = (props) => {
   const approveOrder = useCallback(async (orderId) => {
     try {
       const response = await api.patch(`/orders/status/${orderId}`, {
-        approved: true,
+        status: true,
       });
+      window.location.reload();
     } catch (error) {
       console.log(error);
       alert("Houve um erro ao aprovar o pedido");

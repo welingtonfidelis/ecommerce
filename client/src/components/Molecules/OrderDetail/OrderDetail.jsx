@@ -23,7 +23,7 @@ const OrderDetail = ({isAdmin, detailedOrder, onClose}) => {
       }
       <ProductTable list={products} />
       <Styled.ActionsContainer>
-        <Button onClick={() => onApproveOrder(order.id)}>Aprovar Pedido</Button>
+        {(isAdmin > 0 && order.approved === false) && <Button onClick={() => onApproveOrder(order.id)}>Aprovar Pedido</Button>}
         <Button onClick={onClose}>Fechar</Button>
       </Styled.ActionsContainer>
     </Styled.Container>
