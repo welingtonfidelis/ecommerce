@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { RiCheckboxCircleFill, RiCheckboxBlankCircleLine} from 'react-icons/ri';
 import { maskDate, maskValue } from "../../util";
 import { useAuth } from "../../store/auth-context";

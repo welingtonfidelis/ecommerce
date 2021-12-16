@@ -4,8 +4,7 @@ import Button from "../../Atoms/Button/Button"
 import * as Styled from "./OrderDetail.styled"
 
 const OrderDetail = ({isAdmin, detailedOrder, onClose}) => {
-  console.log(isAdmin, detailedOrder)
-  const {user, products, order} = detailedOrder
+  const {user, order} = detailedOrder
   return (
     <Styled.Container>
       <Styled.Header>

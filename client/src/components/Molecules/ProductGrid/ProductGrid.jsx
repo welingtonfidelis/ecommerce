@@ -20,7 +20,7 @@ const Grid = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       <Styled.Grid>
-        {list.map((item) => (
+        {list && list.filter(l => l.name.toLowerCase().includes(search.toLocaleLowerCase())).map((item) => (
           <Product
             key={item.id}
             id={item.id}

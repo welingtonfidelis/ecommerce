@@ -7,6 +7,7 @@ import * as Styled from "./Products.styled"
 import { api } from "../../services/api";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { useProduct } from "../../store/product-context";
 
 const Products = () => {
   const [name, setName] = useState("")
@@ -15,6 +16,7 @@ const Products = () => {
   const [description, setDescription] = useState("")
   const [error, setError] = useState({name: false, image: false, price: false, description: false})
   const [products, setProducts] = useState([])
+  const { list, onGetList } = useProduct();
 
   const checkForErrors = () => {
     let errorPayload = {};
@@ -66,8 +68,9 @@ const Products = () => {
         setName("");
         setImage("");
         setPrice("");
-        setDescription("");
-        fetchProductsHandler();
+        setDescription("");    
+        onGetList();
+
       }
     } catch (error) {
       toast.error('An error occurred', {
@@ -76,15 +79,9 @@ const Products = () => {
     }
   }
 
-  const fetchProductsHandler = useCallback(async () => {
-    const { data } =  await api.get('http://localhost:3001/products')
-    setProducts(data);
-  }, []);
-
   useEffect(() => {
-    fetchProductsHandler();
-  }, [fetchProductsHandler]);
-
+    onGetList();
+  }, [onGetList]);
 
   return (
     <Styled.Main>
