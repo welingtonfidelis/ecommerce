@@ -17,5 +17,4 @@ export const Content = styled.div`
   background-color: white;
   margin: auto;
   padding: 1rem;
-  width: 60%;
 `;

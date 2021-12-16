@@ -4,9 +4,10 @@ import { api } from "../services/api";
 const OrderContext = React.createContext({
   list: [],
   currentOrder: undefined,
+  setCurrentOrder: (item) => {},
   onClearCurrentOrder: () => {},
   onGetOrderList: (isAdmin, userId) => {},
-  onGetOrderById: (orderId) => {},
+  onApproveOrder: (orderId) => {},
 });
 
 // Named export.
@@ -36,16 +37,14 @@ export const OrderContextProvider = (props) => {
     }
   }, []);
 
-  const getOrderById = useCallback(async (orderId) => {
+  const approveOrder = useCallback(async (orderId) => {
     try {
-      const response = await api.get(`/orders/users/${orderId}`);
-
-      if (response.data) {
-        setCurrentOrder(response.data[0]);
-      }
+      const response = await api.patch(`/orders/status/${orderId}`, {
+        approved: true,
+      });
     } catch (error) {
       console.log(error);
-      alert("Houve um erro ao trazer os detalhes do pedido.");
+      alert("Houve um erro ao aprovar o pedido");
     }
   }, []);
 
@@ -54,9 +53,10 @@ export const OrderContextProvider = (props) => {
       value={{
         list,
         currentOrder,
+        setCurrentOrder: (order) => setCurrentOrder(order),
         onClearCurrentOrder: () => setCurrentOrder(null),
         onGetOrderList: getList,
-        onGetOrderById: getOrderById,
+        onApproveOrder: (orderId) => approveOrder(orderId),
       }}
     >
       {props.children}

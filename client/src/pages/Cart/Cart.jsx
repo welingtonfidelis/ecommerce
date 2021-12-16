@@ -1,6 +1,5 @@
-import { FaTrashAlt } from "react-icons/fa";
 import Button from "../../components/Atoms/Button/Button";
-import { maskValue } from "../../util";
+import ProductTable from "../../components/Molecules/ProductTable/ProductTable";
 import { useCart } from "../../store/cart-context";
 import { useAuth } from "../../store/auth-context";
 
@@ -19,39 +18,7 @@ const Cart = () => {
     <Styled.Container>
       <h1>Meu carrinho de compras</h1>
       <Styled.Form onSubmit={onSubmit} direction="column">
-        <Styled.TableContainer>
-          <Styled.Table>
-            <tr>
-              <Styled.TableTh>Imagem</Styled.TableTh>
-              <Styled.TableTh>Nome</Styled.TableTh>
-              <Styled.TableTh>Preço</Styled.TableTh>
-              <Styled.TableTh>Quantidade</Styled.TableTh>
-              <Styled.TableTh>Ação</Styled.TableTh>
-            </tr>
-            {cart.map((product) => {
-              return (
-                <tr>
-                  <Styled.TableTd width={"10%"}>
-                    <img src={product.image} alt={product.name} image />
-                  </Styled.TableTd>
-                  <Styled.TableTd>{product.name}</Styled.TableTd>
-                  <Styled.TableTd width={"15%"}>
-                    {maskValue(product.price)}
-                  </Styled.TableTd>
-                  <Styled.TableTd width={"10%"}>
-                    {product.quantity}
-                  </Styled.TableTd>
-                  <Styled.TableTd width={"10%"}>
-                    <FaTrashAlt
-                      title="Remover do carrinho"
-                      onClick={() => onRemoveFromCart(product.id)}
-                    />
-                  </Styled.TableTd>
-                </tr>
-              );
-            })}
-          </Styled.Table>
-        </Styled.TableContainer>
+        <ProductTable list={cart} onRemoveAction={onRemoveFromCart} />
         <Button type="submit">Finalizar pedido</Button>
       </Styled.Form>
     </Styled.Container>

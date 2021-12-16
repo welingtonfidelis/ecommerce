@@ -14,17 +14,17 @@ const Orders = () => {
   const { 
     list, 
     currentOrder, 
+    setCurrentOrder,
     onClearCurrentOrder, 
-    onGetOrderList, 
-    onGetOrderById 
+    onGetOrderList
   } = useOrder();
 
   useEffect(() => {
     if (user?.id) onGetOrderList(user?.is_admin, user?.id);
   }, [user?.id, user?.is_admin, onGetOrderList]);
 
-  const handleShowProducts = (id) => {
-    onGetOrderById(id)
+  const handleShowProducts = (item) => {
+    setCurrentOrder(item)
   }
   return (
     <>
@@ -39,7 +39,7 @@ const Orders = () => {
             );
 
             return (
-              <Styled.ListItemContainer key={order.id} onClick={() => handleShowProducts(order.id)}>
+              <Styled.ListItemContainer key={order.id} onClick={() => handleShowProducts(item)}>
                 <Styled.Text>Número: {order.id}</Styled.Text>
                 <Styled.Text>Data: {maskDate(new Date(order.created_at))}</Styled.Text>
                 <Styled.Text>Valor total: {maskValue(price)}</Styled.Text>
@@ -52,7 +52,7 @@ const Orders = () => {
         </Styled.List>
       </Styled.Container>
       <Modal isActive={currentOrder}>
-        <OrderDetail isAdmin={user.is_admin} detailedOrder={currentOrder} onClose={onClearCurrentOrder} />
+        <OrderDetail isAdmin={user?.is_admin} detailedOrder={currentOrder} onClose={onClearCurrentOrder} />
       </Modal>
     </>
   );

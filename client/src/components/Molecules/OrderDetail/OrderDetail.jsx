@@ -1,10 +1,15 @@
 import { RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from "react-icons/ri"
+import { useOrder } from "../../../store/order-context"
+
 import Button from "../../Atoms/Button/Button"
+import ProductTable from "../ProductTable/ProductTable"
 
 import * as Styled from "./OrderDetail.styled"
 
 const OrderDetail = ({isAdmin, detailedOrder, onClose}) => {
-  const {user, order} = detailedOrder
+  const {user, products, order} = detailedOrder
+  const { onApproveOrder } = useOrder()
+
   return (
     <Styled.Container>
       <Styled.Header>
@@ -16,7 +21,11 @@ const OrderDetail = ({isAdmin, detailedOrder, onClose}) => {
           <Styled.Text>{user.name}</Styled.Text>
         </Styled.Client>
       }
-      <Button onClick={onClose}>Fechar</Button>
+      <ProductTable list={products} />
+      <Styled.ActionsContainer>
+        <Button onClick={() => onApproveOrder(order.id)}>Aprovar Pedido</Button>
+        <Button onClick={onClose}>Fechar</Button>
+      </Styled.ActionsContainer>
     </Styled.Container>
   )
 }

@@ -2,7 +2,7 @@ import { FaInfoCircle } from "react-icons/fa";
 import { RiAddCircleFill } from "react-icons/ri";
 import Button from "../../Atoms/Button/Button";
 import { useCart } from "../../../store/cart-context";
-import ProductDetail from "../../Molecules/productDetail/ProductDetail";
+import ProductDetail from "../ProductDetail/ProductDetail";
 import Modal from "../../Atoms/Modal/Modal";
 
 import * as Styled from "./Product.styled";
