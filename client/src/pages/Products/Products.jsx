@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback  } from "react"
+import { useEffect, useState  } from "react"
 import Button from "../../components/Atoms/Button/Button"
 import Form from "../../components/Atoms/Form/Form"
 import TextInput from "../../components/Atoms/TextInput/TextInput"
@@ -15,8 +15,7 @@ const Products = () => {
   const [price, setPrice] = useState("")
   const [description, setDescription] = useState("")
   const [error, setError] = useState({name: false, image: false, price: false, description: false})
-  const [products, setProducts] = useState([])
-  const { list, onGetList } = useProduct();
+  const { onGetList } = useProduct();
 
   const checkForErrors = () => {
     let errorPayload = {};
@@ -122,7 +121,7 @@ const Products = () => {
             <Button variant="contained" type="submit">Registrar</Button>
           </Form>
         </Styled.FormContainer>
-        <Grid products={products}/>
+        <Grid />
       </Styled.Container>
     </Styled.Main>
   )
